@@ -5,21 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My And You</title>
     <style>
-        body {
+         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
-            margin: 20px;
+            margin: 0; /* Adjusted to remove default margin */
             padding: 20px;
             background-color: #f4f4f4;
+            background-image: url('space.jpeg'); /* Sets the background image */
+            background-size: cover; /* Ensures the image covers the whole page */
+            background-position: center; /* Centers the background image */
         }
         .container {
             max-width: 800px;
             margin: auto;
             background: white;
             padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Adds a subtle shadow for better visibility */
         }
         .lyrics {
-            white-space: pre-wrap; /* Keeps the formatting of the lyrics */
+            opacity: 0; /* Initially hide the lyrics by setting opacity to 0 */
+            transition: opacity 2s ease-in-out; /* Transition effect for the opacity change */
+            white-space: pre-wrap;
             background-color: #e9e9e9;
             padding: 10px;
             margin-top: 20px;
@@ -30,22 +36,27 @@
             width: 100%; /* Makes the audio player take the full width of its container */
             margin-top: 20px;
         }
+        h1 {
+            font-family: 'Montserrat', sans-serif; /* Montserrat for headings */
+            font-weight: 700; /* Ensures the boldness */
+            padding-left: 20px;
+        }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Montserrat:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <div class="container">
-    <h1 style="padding-left: 20px;">Me And You</h1>
+    <h1>Me And You</h1>
 
     <!-- Audio Player -->
-    <audio controls>
+    <audio id="song" controls>
         <source src="song.mp3" type="audio/mp3">
         Your browser does not support the audio element.
     </audio>
 
     <!-- Lyrics Section -->
-    <div class="lyrics">
+    <div class="lyrics" id="lyrics">
         <!-- <h2 style="padding-left: 30px;">Lyrics:</h2> -->
         When we met
         You blew my mind
@@ -89,6 +100,14 @@
         <div style="padding-left: 50px;">And <strong>You...</strong></div>
         🎵 🎵 🎵 🎵 🎵 🎵 🎵 🎵
     </div>
+
+    <script>
+        document.getElementById('song').addEventListener('timeupdate', function() {
+            if (this.currentTime > 13) {
+                document.getElementById('lyrics').style.opacity = 1;
+            }
+        });
+    </script>
 </div>
 
 </body>
